@@ -15,6 +15,7 @@
 	<!-- Custom CSS -->
 	<link rel="stylesheet" href="css/main.css">
 
+
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	<!--[if lt IE 9]>
@@ -23,7 +24,7 @@
 	<![endif]-->
 </head>
 
-<body>
+<body ng-app="blogApp">
 	<!-- Navigation -->
 	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 
@@ -64,7 +65,7 @@
 		<div class="row">
 
 			<!-- Dynamic Content Here -->
-
+			<ng-view></ng-view>
 
 			<!-- Blog Sidebar Widgets Column -->
 			<aside class="col-md-4">
@@ -184,9 +185,14 @@
 	<script src="lib/js/jquery.min.js"></script>
 	<script src="lib/js/bootstrap.min.js"></script>
 	<script src="lib/js/marked.min.js"></script>
-
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-route.min.js"></script>
 	<!-- App -->
+
 	<script src="app/app.js"></script>
+	<script src="app/admin/controllers/adminController.js"></script>
+	<script src="app/posts/controllers/postsController.js"></script>
+	<script src="app/postView/controllers/postViewController.js"></script>
 
 </body>
 </html>
