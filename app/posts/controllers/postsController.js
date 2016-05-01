@@ -3,29 +3,38 @@
 
     var app = angular.module('blogApp');
 
-    app.controller('PostsController', function ($http, $routeParams) {
+
+    app.controller('PostsController', ['postsService', '$routeParams', function (postsService, $routeParams) {
         var that = this;
+        that.data = [];
+        that.filterValue = postsService.filterValue;
+
+        postsService.getData()
+            .then(function (posts) {
+                that.data = posts;
+            })
+            .catch(function (err) {
+
+            });
+
         that.pageNumber = parseInt($routeParams.pageNumber);
 
-        that.next = function() {
-            return that.pageNumber + 1;
+        that.older = function() {
+            return this.pageNumber + 1;
         };
 
-        that.prev = function() {
-            return that.pageNumber - 1;
+        that.newer = function() {
+            return this.pageNumber - 1;
         };
 
         that.dashTitle = function(title) {
-            //console.log(title);
-            //var dashed = title.replace(/\s/, '');
-            //console.log(dashed);
+            var regexp = /\W+/g;
+            var newStr = title.replace(regexp, '-');
 
-            return 'AngularJS-Modules';
+            return title;
         };
-      //  console.log($routeParams.pageNumber);
 
-        $http({method: 'GET', url: 'data/posts.json'}).then(function (data) {
-            that.data = data.data.posts;
-        });
-    })
+    }]);
+
+
 }());
